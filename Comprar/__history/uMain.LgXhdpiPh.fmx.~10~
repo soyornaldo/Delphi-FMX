@@ -1,0 +1,210 @@
+inherited frmMain_LgXhdpiPh: TfrmMain_LgXhdpiPh
+  ClientHeight = 696
+  ClientWidth = 448
+  DesignerMasterStyle = 0
+  inherited layMain: TLayout
+    Size.Width = 448.000000000000000000
+    Size.Height = 696.000000000000000000
+    inherited recMain: TRectangle
+      Size.Width = 448.000000000000000000
+      Size.Height = 696.000000000000000000
+      inherited layBotones: TLayout
+        Size.Width = 448.000000000000000000
+        inherited BindNavigator1: TBindNavigator
+          Size.Width = 448.000000000000000000
+        end
+      end
+      inherited layTotales: TLayout
+        Size.Width = 448.000000000000000000
+        inherited Layout4: TLayout
+          inherited Line1: TLine
+            inherited Label1: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+            inherited edtImporteCosto: TEdit
+              Size.Height = 32.000000000000000000
+            end
+          end
+        end
+        inherited Layout5: TLayout
+          Position.X = 343.000000000000000000
+          inherited Line3: TLine
+            inherited Label3: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+            inherited edtGanancia: TEdit
+              Size.Height = 32.000000000000000000
+            end
+          end
+        end
+        inherited Layout6: TLayout
+          Size.Width = 223.000000000000000000
+          inherited Line2: TLine
+            Size.Width = 223.000000000000000000
+            inherited Label2: TLabel
+              Size.Width = 203.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+            inherited edtImporteVenta: TEdit
+              Size.Width = 203.000000000000000000
+              Size.Height = 32.000000000000000000
+            end
+          end
+        end
+      end
+      inherited tabMain: TTabControl
+        Size.Width = 448.000000000000000000
+        Size.Height = 451.000000000000000000
+        Sizes = (
+          448s
+          402s
+          448s
+          402s)
+        inherited tabListView: TTabItem
+          Size.Width = 224.000000000000000000
+          ExplicitSize.cx = 448.000000000000000000
+          ExplicitSize.cy = 49.000000000000000000
+          inherited rectListView: TRectangle
+            Size.Width = 448.000000000000000000
+            Size.Height = 402.000000000000000000
+            inherited ListView1: TListView
+              Size.Width = 448.000000000000000000
+              Size.Height = 402.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Accessory.Align = Leading
+              ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
+              DeleteButtonText = ''
+            end
+          end
+        end
+        inherited tabEdit: TTabItem
+          Size.Width = 224.000000000000000000
+          ExplicitSize.cx = 224.000000000000000000
+          ExplicitSize.cy = 49.000000000000000000
+          inherited layInput: TLayout
+            Size.Width = 448.000000000000000000
+            Size.Height = 402.000000000000000000
+            inherited reInput: TRectangle
+              Margins.Bottom = 20.000000000000000000
+              Size.Width = 448.000000000000000000
+              Size.Height = 382.000000000000000000
+              inherited lnNombre: TLine
+                Size.Width = 388.000000000000000000
+                inherited layLblNombre: TLayout
+                  Size.Width = 316.000000000000000000
+                  inherited edtNombre: TEdit
+                    Margins.Left = 20.000000000000000000
+                    Size.Width = 296.000000000000000000
+                    Size.Height = 32.000000000000000000
+                  end
+                end
+                inherited layEdtNombre: TLayout
+                  inherited lblNombre: TLabel
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                  end
+                end
+              end
+              inherited lnCantidad: TLine
+                Size.Width = 388.000000000000000000
+                inherited layEdtCantidad: TLayout
+                  inherited edtCantidad: TEdit
+                    Margins.Left = 20.000000000000000000
+                    Size.Width = 75.000000000000000000
+                    Size.Height = 32.000000000000000000
+                  end
+                end
+                inherited layLblCantidad: TLayout
+                  inherited lblCantidad: TLabel
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                  end
+                end
+              end
+              inherited lnlCosto: TLine
+                Size.Width = 388.000000000000000000
+                inherited layEdtCosto: TLayout
+                  inherited edtCosto: TEdit
+                    Margins.Left = 20.000000000000000000
+                    Size.Width = 73.000000000000000000
+                    Size.Height = 32.000000000000000000
+                  end
+                end
+                inherited lyLablCosto: TLayout
+                  inherited lblCosto: TLabel
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                  end
+                end
+              end
+              inherited lnVenta: TLine
+                Size.Width = 388.000000000000000000
+                inherited layEdtVenta: TLayout
+                  inherited edtVenta: TEdit
+                    Margins.Left = 20.000000000000000000
+                    Size.Width = 75.000000000000000000
+                    Size.Height = 32.000000000000000000
+                  end
+                end
+                inherited layLblVenta: TLayout
+                  inherited lblVenta: TLabel
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                  end
+                end
+              end
+              inherited layActivo: TLayout
+                Size.Width = 448.000000000000000000
+                inherited edtActivo: TCheckBox
+                  Size.Width = 418.000000000000000000
+                  TextSettings.Font.StyleExt = {00070000000000000004000000}
+                end
+              end
+            end
+          end
+        end
+      end
+      inherited layBottom: TLayout
+        Position.Y = 646.000000000000000000
+        Size.Width = 448.000000000000000000
+        inherited Rectangle2: TRectangle
+          Size.Width = 448.000000000000000000
+          inherited chkVerActivos: TCheckBox
+            Size.Width = 313.000000000000000000
+          end
+          inherited lblRecords: TLabel
+            Position.X = 323.000000000000000000
+          end
+        end
+      end
+      inherited layNavigator: TLayout
+        Position.Y = 596.000000000000000000
+        Size.Width = 448.000000000000000000
+        inherited BindNavigator2: TBindNavigator
+          Size.Width = 448.000000000000000000
+        end
+      end
+      inherited layDinero: TLayout
+        Size.Width = 448.000000000000000000
+        inherited layIzquierda: TLayout
+          inherited Layout2: TLayout
+            inherited edtDineroInicio: TEdit
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              Size.Height = 32.000000000000000000
+            end
+          end
+        end
+        inherited layDerecha: TLayout
+          Size.Width = 271.000000000000000000
+          inherited Layout3: TLayout
+            inherited Label5: TLabel
+              Margins.Left = 5.000000000000000000
+              Size.Width = 50.000000000000000000
+            end
+          end
+          inherited Layout7: TLayout
+            inherited edtDineroQueda: TEdit
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              Size.Height = 32.000000000000000000
+            end
+          end
+        end
+      end
+    end
+  end
+end

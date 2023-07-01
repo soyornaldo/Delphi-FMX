@@ -1,0 +1,369 @@
+unit uMain;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListView.Types,
+  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors,
+  Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope,
+  FMX.Objects, FMX.Edit, FMX.TabControl, System.ImageList, FMX.ImgList,
+  Data.Bind.Controls, Fmx.Bind.Navigator, FMX.Gestures, uUtils, System.Actions,
+  FMX.ActnList;
+
+type
+  TfrmMain = class(TForm)
+    layBotones: TLayout;
+    layBottom: TLayout;
+    layMain: TLayout;
+    recMain: TRectangle;
+    layTotales: TLayout;
+    Layout4: TLayout;
+    Line1: TLine;
+    Label1: TLabel;
+    edtImporteCosto: TEdit;
+    Layout5: TLayout;
+    Line3: TLine;
+    Label3: TLabel;
+    edtGanancia: TEdit;
+    Layout6: TLayout;
+    Line2: TLine;
+    Label2: TLabel;
+    edtImporteVenta: TEdit;
+    tabMain: TTabControl;
+    tabListView: TTabItem;
+    tabEdit: TTabItem;
+    rectListView: TRectangle;
+    ListView1: TListView;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkListControlToField1: TLinkListControlToField;
+    layInput: TLayout;
+    reInput: TRectangle;
+    lnNombre: TLine;
+    lblNombre: TLabel;
+    edtNombre: TEdit;
+    lnCantidad: TLine;
+    lblCantidad: TLabel;
+    edtCantidad: TEdit;
+    lnlCosto: TLine;
+    lblCosto: TLabel;
+    edtCosto: TEdit;
+    lnVenta: TLine;
+    lblVenta: TLabel;
+    edtVenta: TEdit;
+    edtActivo: TCheckBox;
+    LinkControlToField1: TLinkControlToField;
+    LinkControlToField2: TLinkControlToField;
+    LinkControlToField3: TLinkControlToField;
+    LinkControlToField4: TLinkControlToField;
+    LinkControlToField5: TLinkControlToField;
+    BindNavigator1: TBindNavigator;
+    dsCompra: TDataSource;
+    BindNavigator2: TBindNavigator;
+    GestureManager1: TGestureManager;
+    layNavigator: TLayout;
+    Rectangle2: TRectangle;
+    chkVerActivos: TCheckBox;
+    lblRecords: TLabel;
+    ActionList1: TActionList;
+    NextTabAction1: TNextTabAction;
+    PreviousTabAction1: TPreviousTabAction;
+    ChangeTabAction1: TChangeTabAction;
+    layActivo: TLayout;
+    layEdtCantidad: TLayout;
+    layLblCantidad: TLayout;
+    layLblNombre: TLayout;
+    layEdtNombre: TLayout;
+    layEdtCosto: TLayout;
+    lyLablCosto: TLayout;
+    layEdtVenta: TLayout;
+    layLblVenta: TLayout;
+    layDinero: TLayout;
+    Layout2: TLayout;
+    Layout1: TLayout;
+    Label4: TLabel;
+    layIzquierda: TLayout;
+    layDerecha: TLayout;
+    Layout3: TLayout;
+    Label5: TLabel;
+    Layout7: TLayout;
+    edtDineroInicio: TEdit;
+    edtDineroQueda: TEdit;
+    procedure btnEliminarApplyStyleLookup(Sender: TObject);
+    procedure btnAgregarApplyStyleLookup(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure chkVerActivosChange(Sender: TObject);
+    procedure tabMainChange(Sender: TObject);
+    procedure recEliminarClick(Sender: TObject);
+    procedure BindNavigator2Click(Sender: TObject; Button: TNavigateButton);
+    procedure dsCompraDataChange(Sender: TObject; Field: TField);
+    procedure BindNavigator1Click(Sender: TObject; Button: TNavigateButton);
+    procedure edtDineroInicioKeyDown(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure edtDineroInicioKeyUp(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure edtNombreClick(Sender: TObject);
+  private
+    { Private declarations }
+    FPos: TPosRecord;
+    dineroInicial: integer;
+
+    procedure CalculaTotales;
+    procedure SetPos(unaPos: TPosRecord);
+    procedure EditClick(Sender: TObject);
+  public
+    { Public declarations }
+    property Posicion: TPosRecord write SetPos;
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.fmx}
+{$R *.LgXhdpiPh.fmx ANDROID}
+
+uses uUICompra, uModulo, uCompraClass;
+
+
+
+
+
+
+procedure TfrmMain.BindNavigator1Click(Sender: TObject;
+  Button: TNavigateButton);
+begin
+     case Button of
+         nbPost,nbCancel,nbRefresh:
+           if tabMain.ActiveTab = tabEdit then begin
+              //ShowMessage('Si');
+              CalculaTotales;
+           end;
+     end;
+end;
+
+procedure TfrmMain.BindNavigator2Click(Sender: TObject;
+  Button: TNavigateButton);
+begin
+     if tabMain.ActiveTab = tabEdit then CalculaTotales;
+end;
+
+procedure TfrmMain.btnAgregarApplyStyleLookup(Sender: TObject);
+var
+  Button: TCustomButton;
+  Control: TControl;
+  TextObj: TFmxObject;
+begin
+  Button := (Sender as TCustomButton);
+  for Control in Button.Controls do
+      if Control is TImage then begin
+          TextObj := Button.FindStyleResource('text');
+
+          if TextObj is TText then
+            case Control.Align of
+              TAlignLayout.Left: (TextObj as TText).Margins.Left := Control.Width;
+              //TAlignLayout.alTop:    (TextObj as TText).Margins.Top := Control.Height;
+              //TAlignLayout.Right:  (TextObj as TText).Margins.Right := Control.Width;
+              //TAlignLayout.alBottom: (TextObj as TText).Margins.Bottom := Control.Height;
+            end;
+          Break;
+      end;
+end;
+
+procedure TfrmMain.btnEliminarApplyStyleLookup(Sender: TObject);
+var
+  Button: TCustomButton;
+  Control: TControl;
+  TextObj: TFmxObject;
+begin
+  Button := (Sender as TCustomButton);
+  for Control in Button.Controls do
+      if Control is TImage then begin
+          TextObj := Button.FindStyleResource('text');
+
+          if TextObj is TText then
+            case Control.Align of
+              TAlignLayout.Left:   (TextObj as TText).Margins.Left   := Control.Width;
+              TAlignLayout.Top:    (TextObj as TText).Margins.Top    := Control.Height;
+              TAlignLayout.Right:  (TextObj as TText).Margins.Right  := Control.Width;
+              TAlignLayout.Bottom: (TextObj as TText).Margins.Bottom := Control.Height;
+            end;
+          Break;
+      end;
+end;
+
+
+procedure TfrmMain.CalculaTotales;
+var
+ impCosto, impCostoGeneral: real;
+begin
+     with frmModulo do begin
+          //CompraTable.Refresh;
+          CompraTotalesActivo.Refresh;
+          CompraTotales.Refresh;
+
+          impCosto := 0;
+
+          if chkVerActivos.IsChecked then
+               impCostoGeneral := CompraTotalesActivo.FieldByName('ImporteCosto').AsFloat
+          else
+               impCostoGeneral := CompraTotales.FieldByName('ImporteCosto').AsFloat;
+
+
+          // Si estoy en el list view son totales generales
+          if TabMain.ActiveTab = tabListView then begin
+               // Totales Generales de los Productos marcados como Activos
+               if chkVerActivos.IsChecked then begin
+                   if CompraTotalesActivo.RecordCount > 0 then begin
+                      edtImporteCosto.Text := FormatFloat('#,###,###',impCostoGeneral);
+                      edtImporteVenta.Text := FormatFloat('#,###,###',CompraTotalesActivo.FieldByName('ImporteVenta').AsFloat);
+                      edtGanancia.Text     := FormatFloat('#,###,###',CompraTotalesActivo.FieldByName('Ganancia').AsFloat);
+                   end;
+               end
+               // Totales Generales de todos los Productos Activos o no.
+               else begin
+                   if CompraTotales.RecordCount > 0 then begin
+                      edtImporteCosto.Text := FormatFloat('#,###,###',impCostoGeneral);
+                      edtImporteVenta.Text := FormatFloat('#,###,###',CompraTotales.FieldByName('ImporteVenta').AsFloat);
+                      edtGanancia.Text     := FormatFloat('#,###,###',CompraTotales.FieldByName('Ganancia').AsFloat);
+                   end;
+               end;
+
+          end
+          // Solo los Importes del producto que se esta editando
+          else begin
+               if CompraTable.RecordCount > 0 then begin
+                  impCosto             := CompraTable.FieldByName('ImporteCosto').AsFloat;
+                  edtImporteCosto.Text := FormatFloat('#,###,###',impCosto);
+                  edtImporteVenta.Text := FormatFloat('#,###,###',CompraTable.FieldByName('ImporteVenta').AsFloat);
+                  edtGanancia.Text     := FormatFloat('#,###,###',CompraTable.FieldByName('Ganancia').AsFloat);
+               end;
+          end;
+
+          if edtDineroInicio.Text <> '' then
+             edtDineroInicio.Text := FormatFloat('#,###,##0',edtDineroInicio.Text.ToDouble);
+          edtDineroQueda.Text  := FormatFloat('#,###,##0',dineroInicial - impCostoGeneral);
+     end;
+end;
+
+procedure TfrmMain.chkVerActivosChange(Sender: TObject);
+begin
+      with frmModulo.CompraTable do begin
+          DisableControls;
+          try
+             Filtered := False;
+             if (Sender as TCheckBox).IsChecked then begin
+                 Filter   := 'Activo = True' ;
+                 Filtered := True;
+             end
+          finally
+             Refresh;
+             CalculaTotales;
+
+             // Actualizo Pos/CantRecords
+             FPos.pos  := frmModulo.compraTable.RecNo;
+             FPos.cant := frmModulo.compraTable.RecordCount;
+             Posicion := FPos;
+
+             EnableControls;
+          end;
+      end;
+end;
+
+procedure TfrmMain.dsCompraDataChange(Sender: TObject; Field: TField);
+begin
+     // Actualizo Pos/CantRecords
+     FPos.pos  := frmModulo.compraTable.RecNo;
+     FPos.cant := frmModulo.compraTable.RecordCount;
+     Posicion := FPos;
+
+     CalculaTotales;
+end;
+
+procedure TfrmMain.edtDineroInicioKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+     if Key = vkreturn then begin
+         try
+            if trim(edtDineroInicio.Text) = '' then
+                 dineroInicial := 0
+            else
+                 dineroInicial := StrToInt(edtDineroInicio.Text);
+
+            CalculaTotales;
+         except
+            ShowMessage('Error, el Dinero Inicial es un Número entero');
+         end;
+
+         edtCosto.SetFocus;
+     end
+     else
+         if not (KeyChar in [#8,'0'..'9']) then
+              KeyChar := #0;
+end;
+
+procedure TfrmMain.edtDineroInicioKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if edtDineroInicio.Text.Length > 0 then begin
+          dineroInicial := StrToInt(edtDineroInicio.Text);
+          CalculaTotales;
+      end;
+end;
+
+procedure TfrmMain.edtNombreClick(Sender: TObject);
+begin
+      (Sender as TEdit).SelectAll;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+      dineroInicial := 0;
+
+      tabMain.ActiveTab := tabListView;
+
+      {$IF DEFINED (ANDROID)}
+        tabMain.TabPosition := FMX.TabControl.TTabPosition.Dots;
+      {$ELSEIF DEFINED (MSWINDOWS)}
+        tabMain.TabPosition := FMX.TabControl.TTabPosition.Top;
+      {$ENDIF}
+
+
+      CalculaTotales;
+
+      // Actualizo Pos/CantRecords
+      FPos.pos  := frmModulo.compraTable.RecNo;
+      FPos.cant := frmModulo.compraTable.RecordCount;
+      Posicion := FPos;
+end;
+
+procedure TfrmMain.recEliminarClick(Sender: TObject);
+begin
+     with frmModulo.CompraTable do begin
+         Delete;
+         Post;
+     end;
+end;
+
+procedure TfrmMain.SetPos(unaPos: TPosRecord);
+begin
+     lblRecords.Text := unaPos.pos.ToString + '/' + unaPos.cant.ToString;
+end;
+
+procedure TfrmMain.tabMainChange(Sender: TObject);
+begin
+      CalculaTotales;
+end;
+
+procedure TfrmMain.EditClick(Sender: TObject);
+begin
+end;
+
+end.

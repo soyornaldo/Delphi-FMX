@@ -1,0 +1,776 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Editando Producto'
+  ClientHeight = 532
+  ClientWidth = 384
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object layMain: TLayout
+    Align = Client
+    Size.Width = 384.000000000000000000
+    Size.Height = 532.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object recMain: TRectangle
+      Align = Client
+      Fill.Color = xFF2063EF
+      Size.Width = 384.000000000000000000
+      Size.Height = 532.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object layBotones: TLayout
+        Align = Top
+        Size.Width = 384.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object BindNavigator1: TBindNavigator
+          Align = Client
+          Size.Width = 384.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          OnClick = BindNavigator1Click
+          DataSource = BindSourceDB1
+          VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+          xRadius = 4.000000000000000000
+          yRadius = 4.000000000000000000
+        end
+      end
+      object layTotales: TLayout
+        Align = Top
+        Position.Y = 50.000000000000000000
+        Size.Width = 384.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Layout4: TLayout
+          Align = Left
+          Size.Width = 120.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Line1: TLine
+            Align = Horizontal
+            LineType = Bottom
+            Size.Width = 120.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            object Label1: TLabel
+              Align = Top
+              StyledSettings = [FontColor]
+              Margins.Left = 20.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Position.X = 20.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              Text = 'Imp. Costo'
+              TabOrder = 0
+            end
+            object edtImporteCosto: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              StyleLookup = 'transparentedit'
+              TabOrder = 1
+              ReadOnly = True
+              Margins.Left = 20.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object Layout5: TLayout
+          Align = Right
+          Position.X = 279.000000000000000000
+          Size.Width = 105.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Line3: TLine
+            Align = Horizontal
+            LineType = Bottom
+            Size.Width = 105.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            object Label3: TLabel
+              Align = Top
+              StyledSettings = [FontColor]
+              Margins.Left = 20.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Position.X = 20.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 85.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              Text = 'Ganancia'
+              TabOrder = 0
+            end
+            object edtGanancia: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              StyleLookup = 'transparentedit'
+              TabOrder = 1
+              ReadOnly = True
+              Margins.Left = 20.000000000000000000
+              Size.Width = 85.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object Layout6: TLayout
+          Align = Client
+          Size.Width = 159.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object Line2: TLine
+            Align = Horizontal
+            LineType = Bottom
+            Size.Width = 159.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            object Label2: TLabel
+              Align = Top
+              StyledSettings = [FontColor]
+              Margins.Left = 20.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Position.X = 20.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 139.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              Text = 'Imp. Venta'
+              TabOrder = 0
+            end
+            object edtImporteVenta: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              StyleLookup = 'transparentedit'
+              TabOrder = 1
+              ReadOnly = True
+              Margins.Left = 20.000000000000000000
+              Size.Width = 139.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+      end
+      object tabMain: TTabControl
+        Touch.GestureManager = GestureManager1
+        Position.X = 8.000000000000000000
+        Position.Y = 172.000000000000000000
+        Size.Width = 384.000000000000000000
+        Size.Height = 332.000000000000000000
+        Size.PlatformDefault = False
+        TabHeight = 49.000000000000000000
+        TabIndex = 1
+        TabOrder = 3
+        TabPosition = Top
+        OnChange = tabMainChange
+        Sizes = (
+          384s
+          283s
+          384s
+          283s)
+        object tabListView: TTabItem
+          CustomIcon = <
+            item
+            end>
+          IsSelected = False
+          Size.Width = 101.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'Lista Productos'
+          ExplicitSize.cx = 101.000000000000000000
+          ExplicitSize.cy = 26.000000000000000000
+          object rectListView: TRectangle
+            Align = Client
+            Fill.Color = xFF2063EF
+            Size.Width = 384.000000000000000000
+            Size.Height = 283.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ListView1: TListView
+              ItemAppearanceClassName = 'TImageListItemBottomDetailAppearance'
+              ItemEditAppearanceClassName = 'TImageListItemBottomDetailShowCheckAppearance'
+              HeaderAppearanceClassName = 'TListHeaderObjects'
+              FooterAppearanceClassName = 'TListHeaderObjects'
+              Transparent = True
+              Align = Client
+              Size.Width = 384.000000000000000000
+              Size.Height = 283.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              ItemAppearanceObjects.ItemObjects.Text.TextColor = claBlack
+              ItemAppearanceObjects.ItemObjects.Detail.Font.Size = 11.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Detail.WordWrap = True
+              ItemAppearanceObjects.ItemObjects.Image.Visible = False
+              ItemAppearanceObjects.ItemEditObjects.Text.TextColor = claBlack
+              StyleLookup = 'listviewstyle'
+              CanSwipeDelete = False
+            end
+          end
+        end
+        object tabEdit: TTabItem
+          CustomIcon = <
+            item
+            end>
+          IsSelected = True
+          Size.Width = 50.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'Editar'
+          ExplicitSize.cx = 50.000000000000000000
+          ExplicitSize.cy = 26.000000000000000000
+          object layInput: TLayout
+            Align = Client
+            Size.Width = 384.000000000000000000
+            Size.Height = 283.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object reInput: TRectangle
+              Align = Client
+              Fill.Kind = Gradient
+              Fill.Gradient.Points = <
+                item
+                  Color = xFF1DA1F9
+                  Offset = 0.000000000000000000
+                end
+                item
+                  Color = claWhite
+                  Offset = 1.000000000000000000
+                end>
+              Fill.Gradient.StartPosition.X = 0.500000000000000000
+              Fill.Gradient.StartPosition.Y = 1.000000000000000000
+              Fill.Gradient.StopPosition.X = 0.499999970197677600
+              Fill.Gradient.StopPosition.Y = 0.000000000000000000
+              Size.Width = 384.000000000000000000
+              Size.Height = 283.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object lnNombre: TLine
+                Align = Top
+                LineType = Bottom
+                Margins.Left = 30.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 30.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 30.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 324.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+                object layLblNombre: TLayout
+                  Align = Client
+                  Size.Width = 252.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  object edtNombre: TEdit
+                    Touch.InteractiveGestures = [LongTap, DoubleTap]
+                    Align = Client
+                    StyleLookup = 'transparentedit'
+                    TabOrder = 1
+                    Size.Width = 252.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    OnClick = TEditClick
+                  end
+                end
+                object layEdtNombre: TLayout
+                  Align = Left
+                  Size.Width = 72.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  object lblNombre: TLabel
+                    Align = Client
+                    StyledSettings = [FontColor]
+                    Margins.Left = 5.000000000000000000
+                    Size.Width = 67.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Family = 'Tahoma'
+                    TextSettings.Font.Size = 11.000000000000000000
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                    Text = 'Nombre'
+                    TabOrder = 0
+                  end
+                end
+              end
+              object lnCantidad: TLine
+                Align = Top
+                LineType = Bottom
+                Margins.Left = 30.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 30.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 30.000000000000000000
+                Position.Y = 55.000000000000000000
+                Size.Width = 324.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+                object layEdtCantidad: TLayout
+                  Align = Left
+                  Position.X = 72.000000000000000000
+                  Size.Width = 95.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  object edtCantidad: TEdit
+                    Touch.InteractiveGestures = [LongTap, DoubleTap]
+                    Align = Client
+                    StyleLookup = 'transparentedit'
+                    TabOrder = 1
+                    Size.Width = 95.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    OnClick = TEditClick
+                  end
+                end
+                object layLblCantidad: TLayout
+                  Align = Left
+                  Size.Width = 72.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  object lblCantidad: TLabel
+                    Align = Client
+                    StyledSettings = [FontColor]
+                    Margins.Left = 5.000000000000000000
+                    Size.Width = 67.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Family = 'Tahoma'
+                    TextSettings.Font.Size = 11.000000000000000000
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                    Text = 'Cantidad'
+                    TabOrder = 0
+                  end
+                end
+              end
+              object lnlCosto: TLine
+                Align = Top
+                LineType = Bottom
+                Margins.Left = 30.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 30.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 30.000000000000000000
+                Position.Y = 105.000000000000000000
+                Size.Width = 324.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+                object layEdtCosto: TLayout
+                  Align = Left
+                  Position.X = 72.000000000000000000
+                  Size.Width = 93.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  object edtCosto: TEdit
+                    Touch.InteractiveGestures = [LongTap, DoubleTap]
+                    Align = Client
+                    StyleLookup = 'transparentedit'
+                    TabOrder = 1
+                    Size.Width = 93.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    OnClick = TEditClick
+                  end
+                end
+                object lyLablCosto: TLayout
+                  Align = Left
+                  Size.Width = 72.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  object lblCosto: TLabel
+                    Align = Client
+                    StyledSettings = [FontColor]
+                    Margins.Left = 5.000000000000000000
+                    Size.Width = 67.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Family = 'Tahoma'
+                    TextSettings.Font.Size = 11.000000000000000000
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                    Text = 'Costo'
+                    TabOrder = 0
+                  end
+                end
+              end
+              object lnVenta: TLine
+                Align = Top
+                LineType = Bottom
+                Margins.Left = 30.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 30.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 30.000000000000000000
+                Position.Y = 155.000000000000000000
+                Size.Width = 324.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+                object layEdtVenta: TLayout
+                  Align = Left
+                  Position.X = 72.000000000000000000
+                  Size.Width = 95.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  object edtVenta: TEdit
+                    Touch.InteractiveGestures = [LongTap, DoubleTap]
+                    Align = Client
+                    StyleLookup = 'transparentedit'
+                    TabOrder = 1
+                    Size.Width = 95.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    OnClick = TEditClick
+                  end
+                end
+                object layLblVenta: TLayout
+                  Align = Left
+                  Size.Width = 72.000000000000000000
+                  Size.Height = 40.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  object lblVenta: TLabel
+                    Align = Client
+                    StyledSettings = [FontColor]
+                    Margins.Left = 5.000000000000000000
+                    Size.Width = 67.000000000000000000
+                    Size.Height = 40.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Family = 'Tahoma'
+                    TextSettings.Font.Size = 11.000000000000000000
+                    TextSettings.Font.StyleExt = {00070000000000000004000000}
+                    Text = 'Venta'
+                    TabOrder = 0
+                  end
+                end
+              end
+              object layActivo: TLayout
+                Align = Top
+                Position.Y = 200.000000000000000000
+                Size.Width = 384.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                object edtActivo: TCheckBox
+                  Align = VertCenter
+                  StyledSettings = [FontColor]
+                  Margins.Left = 30.000000000000000000
+                  Position.X = 30.000000000000000000
+                  Position.Y = 15.000000000000000000
+                  Size.Width = 354.000000000000000000
+                  Size.Height = 19.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  Text = 'Activo'
+                  TextSettings.Font.Family = 'Tahoma'
+                  TextSettings.Font.Size = 11.000000000000000000
+                  TextSettings.Font.StyleExt = {00070000000000000004000000}
+                end
+              end
+            end
+          end
+        end
+      end
+      object layBottom: TLayout
+        Align = Bottom
+        Position.Y = 482.000000000000000000
+        Size.Width = 384.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Rectangle2: TRectangle
+          Align = Client
+          Size.Width = 384.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object chkVerActivos: TCheckBox
+            Align = Client
+            Margins.Left = 10.000000000000000000
+            Size.Width = 249.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Ver solo Activos'
+            OnChange = chkVerActivosChange
+          end
+          object lblRecords: TLabel
+            Align = Right
+            Margins.Right = 5.000000000000000000
+            Position.X = 259.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            Text = '0/0'
+            TabOrder = 1
+          end
+        end
+      end
+      object layNavigator: TLayout
+        Align = Bottom
+        Position.Y = 432.000000000000000000
+        Size.Width = 384.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object BindNavigator2: TBindNavigator
+          Align = Client
+          Size.Width = 384.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          OnClick = BindNavigator2Click
+          DataSource = BindSourceDB1
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+          xRadius = 4.000000000000000000
+          yRadius = 4.000000000000000000
+        end
+      end
+      object layDinero: TLayout
+        Align = Top
+        Position.Y = 100.000000000000000000
+        Size.Width = 384.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        object layIzquierda: TLayout
+          Align = Left
+          Size.Width = 177.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout1: TLayout
+            Align = Left
+            Size.Width = 49.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label4: TLabel
+              Align = Client
+              StyledSettings = [Style, FontColor]
+              Margins.Left = 5.000000000000000000
+              Size.Width = 44.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              Text = 'Tengo'
+              TabOrder = 0
+            end
+          end
+          object Layout2: TLayout
+            Align = Client
+            Size.Width = 128.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object edtDineroInicio: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              StyleLookup = 'transparentedit'
+              TabOrder = 0
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = claGreen
+              TextSettings.HorzAlign = Center
+              Size.Width = 128.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Dinero Inicio'
+              StyledSettings = []
+              OnKeyDown = edtDineroInicioKeyDown
+              OnKeyUp = edtDineroInicioKeyUp
+              OnClick = TEditClick
+            end
+          end
+        end
+        object layDerecha: TLayout
+          Align = Client
+          Size.Width = 207.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object Layout3: TLayout
+            Align = Right
+            Position.X = 19.000000000000000000
+            Size.Width = 60.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label5: TLabel
+              Align = Client
+              StyledSettings = [Style]
+              Margins.Right = 5.000000000000000000
+              Size.Width = 55.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.HorzAlign = Trailing
+              Text = 'Me queda'
+              TabOrder = 0
+            end
+          end
+          object Layout7: TLayout
+            Align = Right
+            Position.X = 79.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object edtDineroQueda: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              StyleLookup = 'transparentedit'
+              TabOrder = 0
+              ReadOnly = True
+              TextSettings.Font.Family = 'Tahoma'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = claRed
+              TextSettings.HorzAlign = Center
+              Size.Width = 128.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Dinero que Queda'
+              StyledSettings = []
+            end
+          end
+        end
+      end
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = frmModulo.CompraTable
+    ScopeMappings = <>
+    Left = 176
+    Top = 256
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 340
+    Top = 293
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Nombre'
+      Control = ListView1
+      FillExpressions = <
+        item
+          SourceMemberName = 'Detalle'
+          ControlMemberName = 'Detail'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Nombre'
+      Control = edtNombre
+      Track = False
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Cantidad'
+      Control = edtCantidad
+      Track = False
+    end
+    object LinkControlToField3: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Costo'
+      Control = edtCosto
+      Track = False
+    end
+    object LinkControlToField4: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Venta'
+      Control = edtVenta
+      Track = False
+    end
+    object LinkControlToField5: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Activo'
+      Control = edtActivo
+      Track = True
+    end
+  end
+  object dsCompra: TDataSource
+    DataSet = frmModulo.CompraTable
+    OnDataChange = dsCompraDataChange
+    Left = 200
+    Top = 356
+  end
+  object GestureManager1: TGestureManager
+    Sensitivity = 80.000000000000000000
+    Left = 280
+    Top = 276
+    GestureData = <
+      item
+        Control = tabMain
+        Collection = <
+          item
+            Action = PreviousTabAction1
+            GestureID = sgiLeft
+          end
+          item
+            Action = NextTabAction1
+            GestureID = sgiRight
+          end>
+      end>
+  end
+  object ActionList1: TActionList
+    Left = 232
+    Top = 164
+    object NextTabAction1: TNextTabAction
+      Category = 'Tab'
+      TabControl = tabMain
+      CustomText = 'Next'
+    end
+    object PreviousTabAction1: TPreviousTabAction
+      Category = 'Tab'
+      TabControl = tabMain
+      CustomText = 'Prev'
+      ShortCut = 137
+    end
+    object ChangeTabAction1: TChangeTabAction
+      Category = 'Tab'
+    end
+  end
+end

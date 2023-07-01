@@ -1,0 +1,58 @@
+unit uCompra;
+
+interface
+
+type
+
+ TCompra=Object
+   private
+    FNombre: string;
+    FCosto,
+    FVenta,
+    FImporteCosto,
+    FImporteVenta,
+    FGanancia: Real;
+    FCantidad: integer;
+
+
+    procedure SetCosto(unCosto: Real);
+    procedure SetVenta(unaVenta: real);
+    procedure SetCantidad(unaCantidad: Real);
+   public
+    property Nombre: string read FNombre write FNombre;
+    property Costo: Real read FCosto write SetCosto;
+    property Venta: Real read FVenta write SetVenta;
+    property ImporteCosto: Real read FImporteCosto;
+    property ImporteVenta: Real read FImporteVenta;
+    property Cantidad: integer read FCantidad write SetCantidad;
+    property Ganancia: Real read FGanancia;
+ End;
+
+
+implementation
+
+{ TCompra }
+
+procedure TCompra.SetCantidad(unaCantidad: Real);
+begin
+      FCantidad     := unaCantidad;
+      FImporteCosto := FCantidad * FCosto;
+      FImporteVenta := FCantidad * FVenta;
+      FGanancia     := FImporteVenta - FImporteCosto;
+end;
+
+procedure TCompra.SetCosto(unCosto: Real);
+begin
+      FCosto        := unCosto;
+      FImporteCosto := FCantidad * FCosto;
+      FGanancia     := FImporteVenta - FImporteCosto;
+end;
+
+procedure TCompra.SetVenta(unaVenta: real);
+begin
+      FVenta        := unaVenta;
+      FImporteVenta := FCantidad * FVenta;
+      FGanancia     := FImporteVenta - FImporteCosto;
+end;
+
+end.

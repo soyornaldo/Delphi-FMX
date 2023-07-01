@@ -1,0 +1,108 @@
+unit uModulo;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, System.IOUtils,
+  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.FMXUI.Wait, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, uUtils;
+
+type
+  TfrmModulo = class(TDataModule)
+    conCompras: TFDConnection;
+    CompraTable: TFDQuery;
+    CompraTableId: TIntegerField;
+    CompraTableNombre: TStringField;
+    CompraTableCosto: TFloatField;
+    CompraTableCantidad: TIntegerField;
+    CompraTableImporteCosto: TFloatField;
+    CompraTableVenta: TFloatField;
+    CompraTableImporteVenta: TFloatField;
+    CompraTableGanancia: TFloatField;
+    CompraTableActivo: TBooleanField;
+    CompraTableDetalle: TStringField;
+    CompraTotales: TFDQuery;
+    CompraTotalesImporteCosto: TFloatField;
+    CompraTotalesImporteVenta: TFloatField;
+    CompraTotalesGanancia: TFloatField;
+    CompraTotalesActivo: TFDQuery;
+    CompraTotalesActivoImporteCosto: TFloatField;
+    CompraTotalesActivoImporteVenta: TFloatField;
+    CompraTotalesActivoGanancia: TFloatField;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+    procedure CompraTableCalcFields(DataSet: TDataSet);
+    procedure conComprasBeforeConnect(Sender: TObject);
+    procedure CompraTableAfterDelete(DataSet: TDataSet);
+  private
+    { Private declarations }
+    FPos: TPosRecord;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmModulo: TfrmModulo;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+uses uCompraClass, uMain;
+
+{$R *.dfm}
+
+procedure TfrmModulo.CompraTableAfterDelete(DataSet: TDataSet);
+begin
+      with frmMain do begin
+          // Actualizo Pos/CantRecords
+          FPos.pos  := frmModulo.compraTable.RecNo;
+          FPos.cant := frmModulo.compraTable.RecordCount;
+          Posicion := FPos;
+      end;
+end;
+
+procedure TfrmModulo.CompraTableCalcFields(DataSet: TDataSet);
+begin
+      Dataset.FieldValues['Detalle'] := '(' + DataSet.FieldByName('Cantidad').AsString + ')  ' +
+                                        '(' + DataSet.FieldByName('Costo').AsString + ',' +
+                                        DataSet.FieldByName('ImporteCosto').AsString + ')' +
+                                        '   '+
+                                        '(' + DataSet.FieldByName('Venta').AsString + ',' +
+                                        DataSet.FieldByName('ImporteVenta').AsString + ')' +
+                                        '  '+
+                                        '(' + DataSet.FieldByName('Ganancia').AsString + ')';
+end;
+
+procedure TfrmModulo.conComprasBeforeConnect(Sender: TObject);
+begin
+      {$IF DEFINED (ANDROID)}
+        conCompras.Params.Values['Database'] := TPath.GetDocumentsPath + PathDelim + 'compras.db3';
+      {$ELSEIF DEFINED (MSWINDOWS)}
+      {$ENDIF}
+end;
+
+procedure TfrmModulo.DataModuleCreate(Sender: TObject);
+begin
+     conCompras.Params.Database := 'compras.db3';
+     conCompras.Connected := True;
+
+     CompraTable.Active         := True;
+     CompraTotales.Active       := True;
+     CompraTotalesActivo.Active := True;
+end;
+
+procedure TfrmModulo.DataModuleDestroy(Sender: TObject);
+begin
+     CompraTable.Active         := False;
+     CompraTotales.Active       := False;
+     CompraTotalesActivo.Active := False;
+
+     conCompras.Connected := False;
+end;
+
+end.

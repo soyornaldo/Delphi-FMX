@@ -1,0 +1,17 @@
+program Comprar;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  uMain in 'uMain.pas' {frmMain},
+  uCompra in 'uCompra.pas',
+  uModulo in 'uModulo.pas' {frmModulo: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfrmModulo, frmModulo);
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.Run;
+end.
